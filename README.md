@@ -1,2 +1,3 @@
-# suman-gowda-tech-e-book-publications
-Exported from Caffeine project: Suman Gowda Tech e-Book Publications
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

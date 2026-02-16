@@ -1,0 +1,84 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-16T16:45:04.867Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-15",
+        "summary": "Add a backend-supported first-time admin bootstrap mechanism so the website can be rebuilt/used from scratch even when no admin principal is configured (to prevent the Admin Panel from permanently showing 'Access Denied').",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Improve the Admin Panel 'Access Denied' experience to guide the user to the correct Internet Identity and/or complete first-time admin setup, instead of leaving them stuck on the Access Denied screen.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/backend.d.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/backend.d.ts"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Add an Admin Settings capability to manage admin access after bootstrap by allowing an existing admin to grant admin permission to additional principals (so the owner can avoid future lockouts).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/admin/AdminSettingsPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/pages/admin/AdminSettingsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Ensure the rebuilt-from-scratch flow preserves all existing site functionality (storefront, payments, product upload, downloads, contact/newsletter/admin dashboard) while focusing changes only on admin access/setup reliability.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "frontend/src/hooks/useActor.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/auth/AdminRouteGuard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/auth/AdminRouteGuard.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/admin/AdminSettingsPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

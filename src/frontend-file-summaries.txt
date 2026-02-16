@@ -1,0 +1,8 @@
+{
+  "frontend/src/pages/admin/AdminOrdersPage.tsx": "Admin page displaying all orders in a table with order details and navigation to individual order detail pages using the navigate function for type-safe routing.",
+  "frontend/src/backend.d.ts": "TypeScript interface definitions for the backend canister (unchanged, restored to original state without non-existent methods).",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including useGrantAdminRole for admin access management with proper error handling and cache invalidation.",
+  "frontend/src/components/auth/AdminRouteGuard.tsx": "Enhanced admin route guard that provides guided identity switching, displays the user's Principal ID for access requests, and includes instructions for first-time admin setup via URL parameter.",
+  "frontend/src/pages/admin/AdminSettingsPage.tsx": "Admin settings page with new Admin Access section allowing existing admins to grant admin role to additional principals by entering their Principal ID.",
+  "frontend/src/hooks/useActor.ts": "Actor initialization hook that manages backend actor lifecycle with identity changes and ensures proper query invalidation (unchanged from original, included for completeness)."
+}

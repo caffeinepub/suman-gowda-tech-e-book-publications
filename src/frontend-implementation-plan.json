@@ -1,0 +1,75 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Admin access bootstrap + guided Access Denied UX (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-16",
+      "summary": "Replace the stuck 'Access Denied' admin guard UI with guided identity switching and first-time admin setup flow driven by backend state.",
+      "acceptanceCriteria": [
+        "When a logged-in user is not an admin, the Access Denied screen shows clear English guidance that admin access depends on the Internet Identity used.",
+        "The Access Denied screen provides a prominent action to log out (or switch identity) using the existing Internet Identity flow.",
+        "If the backend reports that no admin exists yet, the Access Denied screen shows a 'Set up Admin' / 'Become Admin' action that calls the bootstrap method from REQ-15 and then re-checks admin status automatically."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "operation": "modify",
+          "description": "Enhance the unauthorized/admin-denied UI: (1) explain that admin access depends on the Internet Identity used, (2) add a prominent 'Logout / Switch Internet Identity' action using the existing Internet Identity clear() flow, and (3) if backend indicates no admin exists yet, show a 'Set up Admin' action that triggers the bootstrap-admin mutation and then automatically re-checks admin status (invalidate/refetch isAdmin-related queries). Use the selected \"authorization\" component’s frontend guidance for access-control UI and logout cache clearing. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add React Query hooks used by the improved Access Denied screen: a query hook for 'any admin configured?' (uses backend-supported capability), and a mutation hook for 'bootstrap/become first admin' that invalidates/refetches admin-status queries after success and surfaces clear error messages for repeated/forbidden attempts. Use the selected \"authorization\" component’s error-handling guidance for authorization traps. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update the frontend backend interface typings to include the new backend-supported admin bootstrap capabilities required by REQ-16 (admin-exists check + bootstrap-first-admin). Ensure types align with how the UI calls these methods from the actor."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Add an Admin Settings section that lets an existing admin grant admin access to additional principals.",
+      "acceptanceCriteria": [
+        "Backend exposes an admin-only method to add another admin principal (input as Principal/Text) and rejects calls from non-admins.",
+        "Frontend adds a section in the Admin area (preferably Admin Settings) where an admin can paste a Principal ID and grant admin access.",
+        "After granting access, a newly-added admin can log in with that Internet Identity and successfully open /admin without seeing Access Denied."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a grant-admin mutation hook that calls the backend capability for granting admin role to another principal, with robust error handling and query invalidation (e.g., invalidate admin status queries and any cached role/admin checks). Use the selected \"authorization\" component’s frontend guidance for handling authorization failures gracefully. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminSettingsPage.tsx",
+          "operation": "modify",
+          "description": "Add an 'Admin Access' section to Admin Settings: input for a Principal ID, a submit button that calls the grant-admin mutation, and success/failure toast feedback. Keep this within the existing /admin/settings route (no route removals/renames)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Preserve existing storefront, Stripe checkout, uploads/downloads, and admin dashboard behavior while changing only admin access/setup reliability UX.",
+      "acceptanceCriteria": [
+        "After admin bootstrap and/or admin grant, the admin navigation shows Products and Stripe Setup pages and they remain functional.",
+        "Non-admin visitors can still browse the Home/Store/About/Contact/Legal pages and cannot access admin-only data.",
+        "No regressions in existing Stripe checkout flow and download flow (success page -> order -> download page)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "operation": "modify",
+          "description": "Ensure the guard changes remain non-breaking: keep current route structure intact, continue to render children unchanged for admins, and avoid blocking public routes. Confirm that admin navigation remains reachable only after passing admin checks, while preserving existing admin pages (Products, Stripe Setup, Orders, etc.)."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Ensure admin bootstrap/grant flows do not regress actor lifecycle: keep identity-change behavior, and confirm that logging out/switching identity clears cached queries and causes admin checks to re-run cleanly (to support REQ-16/REQ-17 flows without impacting storefront/payments/downloads). Use the selected \"authorization\" component’s frontend guidance to clear cached application data on logout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

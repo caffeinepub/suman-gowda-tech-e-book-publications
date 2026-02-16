@@ -1,0 +1,73 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-improve-the-admin-panel-access-denied-experience-to-guide-the-user-to-the-correct-internet-identity-and-or-complete-first-time-admin-setup-instead-of-leaving-them-stuck-on-the-access-denied-screen",
+      "featureTitle": "Improve the Admin Panel 'Access Denied' experience to guide the user to the correct Internet Identity and/or complete first-time admin setup, instead of leaving them stuck on the Access Denied screen.",
+      "files": [
+        "frontend/src/components/auth/AdminRouteGuard.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-admin-settings-capability-to-manage-admin-access-after-bootstrap-by-allowing-an-existing-admin-to-grant-admin-permission-to-additional-principals-so-the-owner-can-avoid-future-lockouts",
+      "featureTitle": "Add an Admin Settings capability to manage admin access after bootstrap by allowing an existing admin to grant admin permission to additional principals (so the owner can avoid future lockouts).",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/admin/AdminSettingsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-rebuilt-from-scratch-flow-preserves-all-existing-site-functionality-storefront-payments-product-upload-downloads-contact-newsletter-admin-dashboard-while-focusing-changes-only-on-admin-access-setup-reliability",
+      "featureTitle": "Ensure the rebuilt-from-scratch flow preserves all existing site functionality (storefront, payments, product upload, downloads, contact/newsletter/admin dashboard) while focusing changes only on admin access/setup reliability.",
+      "files": [
+        "frontend/src/components/auth/AdminRouteGuard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

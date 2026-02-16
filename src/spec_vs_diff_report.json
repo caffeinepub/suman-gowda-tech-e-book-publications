@@ -1,0 +1,60 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-16T16:45:04.864Z",
+  "summary": "REQ-17 is partially implemented via a backend grantAdminRole method and a new Admin Settings UI section to grant admin access. However, the core first-time admin bootstrap flow (REQ-15) and the corresponding Access Denied UI behavior for bootstrapping (REQ-16) are not evidenced in the diff. The Access Denied UI introduces an unrequested token/URL-based setup concept.",
+  "missing_requirements": [
+    {
+      "id": "REQ-15",
+      "requirement": "Add a backend-supported first-time admin bootstrap mechanism: (1) method to determine whether any admin is configured, and (2) method allowing the caller to become an admin only when no admin exists yet.",
+      "reason": "backend/main.mo shows admin role grant methods (grantAdminRole/grantUserRole) but no evidence of a 'no admin exists' check method nor a 'bootstrap/become first admin' method gated on 'no admins configured'.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "requirement": "If the backend reports that no admin exists yet, the Access Denied screen shows a 'Set up Admin' / 'Become Admin' action that calls the bootstrap method from REQ-15 and then re-checks admin status automatically.",
+      "reason": "frontend/src/components/auth/AdminRouteGuard.tsx provides identity guidance and a logout/switch action, but the shown implementation constructs a URL with a token and does not show a backend-driven 'no admin exists' check nor a call to a bootstrap method followed by an automatic re-check.",
+      "evidence": [
+        "frontend/src/components/auth/AdminRouteGuard.tsx"
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "requirement": "Ensure rebuilt-from-scratch flow preserves all existing site functionality (storefront, payments, uploads, downloads, contact/newsletter/admin dashboard) with changes focused only on admin access/setup reliability.",
+      "reason": "The diff summary does not provide sufficient evidence to confirm non-regression of Stripe checkout, download flow, product upload, or other public pages; only admin-access-related UI/hooks are shown in detail.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Token/URL-parameter-based 'First Time Setup' for admin (e.g., caffeineAdminToken=ADMIN_SECRET_TOKEN) shown in the Access Denied flow.",
+      "reason": "BuildRequest explicitly focuses on Internet Identity and backend-supported bootstrap/admin management; it does not request or describe any secret-token URL-based setup mechanism, and this may conflict with the 'only Internet Identity is supported' constraint.",
+      "evidence": [
+        "frontend/src/components/auth/AdminRouteGuard.tsx"
+      ]
+    },
+    {
+      "description": "Added backend/migration.mo migration module and main actor wiring '(with migration = Migration.run)'.",
+      "reason": "BuildRequest does not ask for a migration system/module; this appears to be additional infrastructure beyond the requested admin access flow changes.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/auth/AdminRouteGuard.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/admin/AdminSettingsPage.tsx",
+    "project_state.json"
+  ]
+}

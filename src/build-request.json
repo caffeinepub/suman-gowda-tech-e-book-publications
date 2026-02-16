@@ -1,0 +1,95 @@
+{
+  "kind": "build_request",
+  "title": "Rebuild admin access flow to eliminate 'Access Denied' and enable first-time admin setup",
+  "projectName": "Suman Gowda eBooks",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "text": "Add a backend-supported first-time admin bootstrap mechanism so the website can be rebuilt/used from scratch even when no admin principal is configured (to prevent the Admin Panel from permanently showing 'Access Denied').",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "I want to built website again from begining"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new backend method exists to determine whether any admin is configured (e.g., returns true/false).",
+        "A new backend method exists that allows the caller to become an admin only when no admin currently exists (subsequent calls fail with a clear error).",
+        "Once bootstrapped, the caller passes existing admin checks (e.g., isCallerAdmin returns true) and can access admin-only endpoints like addOrUpdateeBook and setStripeConfiguration."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Improve the Admin Panel 'Access Denied' experience to guide the user to the correct Internet Identity and/or complete first-time admin setup, instead of leaving them stuck on the Access Denied screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "I opened the link but it shows Acess denied",
+          "when i open the link it shows like these"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a logged-in user is not an admin, the Access Denied screen shows clear English guidance that admin access depends on the Internet Identity used.",
+        "The Access Denied screen provides a prominent action to log out (or switch identity) using the existing Internet Identity flow.",
+        "If the backend reports that no admin exists yet, the Access Denied screen shows a 'Set up Admin' / 'Become Admin' action that calls the bootstrap method from REQ-15 and then re-checks admin status automatically."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Add an Admin Settings capability to manage admin access after bootstrap by allowing an existing admin to grant admin permission to additional principals (so the owner can avoid future lockouts).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "I want to built website again from begining"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes an admin-only method to add another admin principal (input as Principal/Text) and rejects calls from non-admins.",
+        "Frontend adds a section in the Admin area (preferably Admin Settings) where an admin can paste a Principal ID and grant admin access.",
+        "After granting access, a newly-added admin can log in with that Internet Identity and successfully open /admin without seeing Access Denied."
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Ensure the rebuilt-from-scratch flow preserves all existing site functionality (storefront, payments, product upload, downloads, contact/newsletter/admin dashboard) while focusing changes only on admin access/setup reliability.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "where is the payment option, where is the option to upload a book"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After admin bootstrap and/or admin grant, the admin navigation shows Products and Stripe Setup pages and they remain functional.",
+        "Non-admin visitors can still browse the Home/Store/About/Contact/Legal pages and cannot access admin-only data.",
+        "No regressions in existing Stripe checkout flow and download flow (success page -> order -> download page)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit files in frontend immutablePaths (compose existing UI components instead).",
+    "Do not remove or rename existing routes (e.g., /admin, /store) since shared links may exist."
+  ],
+  "nonGoals": [
+    "Full visual redesign of the public site theme/layout.",
+    "Adding third-party authentication providers (only Internet Identity is supported).",
+    "Adding non-Stripe payment providers or external databases."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

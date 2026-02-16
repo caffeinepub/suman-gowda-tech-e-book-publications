@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a professional, modern eBook sales website named “Suman Gowda Tech e-Book Publications” (white + blue theme), including storefront for digital PDF eBooks, India-friendly payments (Razorpay/Stripe), admin sales dashboard, content pages (About/Contact/Legal), SEO, newsletter capture, and social links. Email automation is not required; business email is manually set in admin and displayed on Contact page; contact form submissions are stored/viewable in the admin dashboard.",
+  "architectural_notes": [
+    "Avoid automated email sending; store contact form submissions in admin dashboard and allow manual business email setting displayed publicly on Contact page."
+  ],
+  "known_issues": [
+    "Initial build generation failed previously (\"AI was unable to fulfill your request\"); retry requested.",
+    "User reports admin panel shows \"Access denied\" and cannot find payment/upload options; user requested rebuilding the website again from the beginning."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-clean-professional-website-for-suman-gowda-tech-e-book-publications-using-a-white-blue-theme-including-a-global-header-that-supports-uploading-a-brand-profile-picture-logo-and-displaying-it-in-the-header-across-pages",
+      "title": "Create a responsive, clean, professional website for “Suman Gowda Tech e-Book Publications” using a white + blue theme, including a global header that supports uploading a brand profile picture/logo and displaying it in the header across pages.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-home-page-with-1-hero-section-showing-brand-name-and-the-tagline-simple-tech-learning-for-real-jobs-2-cta-buttons-explore-ebooks-and-buy-now-and-3-a-short-description-of-the-brand-and-mission",
+      "title": "Implement the Home page with: (1) hero section showing brand name and the tagline “Simple Tech Learning for Real Jobs”, (2) CTA buttons “Explore eBooks” and “Buy Now”, and (3) a short description of the brand and mission.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-store-products-page-that-lists-multiple-ebooks-with-cover-image-title-description-price-and-a-buy-button-for-each-product",
+      "title": "Implement a Store / Products page that lists multiple eBooks with cover image, title, description, price, and a Buy button for each product.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-admin-product-management-to-create-update-delete-ebooks-and-upload-associated-assets-including-1-cover-image-upload-and-2-digital-pdf-upload-for-each-ebook-product",
+      "title": "Implement admin product management to create/update/delete eBooks and upload associated assets, including: (1) cover image upload and (2) digital PDF upload for each eBook product.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-panel-protected-by-internet-identity-login-with-a-dashboard-showing-total-sales-total-revenue-number-of-customers-and-an-order-history-list",
+      "title": "Add an Admin Panel (protected by Internet Identity login) with a dashboard showing: total sales, total revenue, number of customers, and an order history list.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-payment-and-purchase-flow-using-stripe-test-mode-supported-to-sell-digital-ebooks-and-enable-automatic-in-app-digital-delivery-after-successful-payment-no-email-sending",
+      "title": "Implement a payment and purchase flow using Stripe (test mode supported) to sell digital eBooks, and enable automatic in-app digital delivery after successful payment (no email sending).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-download-tracking-record-each-successful-download-access-event-per-order-and-expose-download-counts-events-in-the-admin-order-details",
+      "title": "Implement download tracking: record each successful download/access event per order and expose download counts/events in the admin order details.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-setting-to-manually-enter-and-update-the-business-email-address-default-to-sumangowdatechpublications-gmail-com-and-display-the-currently-configured-business-email-on-the-contact-us-page",
+      "title": "Add an admin setting to manually enter and update the business email address (default to sumangowdatechpublications@gmail.com), and display the currently configured business email on the Contact Us page.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-contact-us-page-that-shows-the-business-email-and-a-simple-contact-form-name-email-message-where-submissions-are-stored-in-the-backend-and-viewable-inside-the-admin-dashboard-no-email-sending",
+      "title": "Implement a Contact Us page that shows the business email and a simple contact form (Name, Email, Message) where submissions are stored in the backend and viewable inside the admin dashboard (no email sending).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-about-page-content-featuring-founder-suman-gowda-and-a-short-story-about-building-practical-tech-resources-for-real-jobs",
+      "title": "Implement About page content featuring founder “Suman Gowda” and a short story about building practical tech resources for real jobs.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-legal-pages-privacy-policy-terms-conditions-and-refund-policy-each-accessible-from-the-site-footer-or-equivalent-consistent-location",
+      "title": "Implement Legal pages: Privacy Policy, Terms & Conditions, and Refund Policy, each accessible from the site footer (or equivalent consistent location).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-newsletter-email-capture-ui-and-backend-storage-collection-only-no-email-sending-include-an-admin-view-to-export-the-captured-email-list",
+      "title": "Add newsletter email capture UI and backend storage (collection only; no email sending). Include an admin view to export the captured email list.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-social-links-instagram-telegram-linkedin-in-a-consistent-site-location-e-g-footer-provide-admin-editable-urls-or-clearly-defined-placeholders-that-can-be-updated-later-without-code-changes",
+      "title": "Add social links (Instagram, Telegram, LinkedIn) in a consistent site location (e.g., footer). Provide admin-editable URLs or clearly defined placeholders that can be updated later without code changes.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-pages-seo-ready-by-adding-per-page-titles-and-meta-descriptions-for-home-store-about-contact-and-legal-pages",
+      "title": "Make pages SEO-ready by adding per-page titles and meta descriptions for Home, Store, About, Contact, and Legal pages.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-the-admin-panel-access-denied-experience-to-guide-the-user-to-the-correct-internet-identity-and-or-complete-first-time-admin-setup-instead-of-leaving-them-stuck-on-the-access-denied-screen",
+      "title": "Improve the Admin Panel 'Access Denied' experience to guide the user to the correct Internet Identity and/or complete first-time admin setup, instead of leaving them stuck on the Access Denied screen.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-settings-capability-to-manage-admin-access-after-bootstrap-by-allowing-an-existing-admin-to-grant-admin-permission-to-additional-principals-so-the-owner-can-avoid-future-lockouts",
+      "title": "Add an Admin Settings capability to manage admin access after bootstrap by allowing an existing admin to grant admin permission to additional principals (so the owner can avoid future lockouts).",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-rebuilt-from-scratch-flow-preserves-all-existing-site-functionality-storefront-payments-product-upload-downloads-contact-newsletter-admin-dashboard-while-focusing-changes-only-on-admin-access-setup-reliability",
+      "title": "Ensure the rebuilt-from-scratch flow preserves all existing site functionality (storefront, payments, product upload, downloads, contact/newsletter/admin dashboard) while focusing changes only on admin access/setup reliability.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create responsive website UI with clean, minimal white+blue theme and header logo/profile picture upload/display",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Home page with hero (brand name + tagline “Simple Tech Learning for Real Jobs”), CTAs (Explore eBooks/Buy Now), and brand mission section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Store/Products page: list multiple eBooks with cover image, title, description, price, and Buy button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Digital product management: admin upload/support for PDF eBooks and configure digital delivery after purchase (no email automation required)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Payments & sales system with India-friendly options (UPI/cards/netbanking) via Razorpay or Stripe integration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Admin sales dashboard: total sales, revenue, customers, order history, download tracking, and customer email list export",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Admin setting to manually enter business email address and display it on the Contact Us page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Contact Us page: show business email and provide contact form (Name, Email, Message) with submissions viewable inside admin dashboard (no email sending)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "About page content featuring founder Suman Gowda and mission/story",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Legal pages: Privacy Policy, Terms & Conditions, Refund Policy",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "SEO optimized pages, newsletter email capture (storage only), and social links (Instagram, Telegram, LinkedIn)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Enable SSL/secure site configuration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add a backend-supported first-time admin bootstrap mechanism so the website can be rebuilt/used from scratch even when no admin principal is configured (to prevent the Admin Panel from permanently showing 'Access Denied').",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Suman Gowda Tech e-Book Publications",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
